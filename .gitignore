@@ -1,0 +1,25 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+node_modules/
+dist/
+*.pyc
+storage/
+.pgdata/
+*.log
+.DS_Store
+
+# Local credentials, caches and generated artifacts
+.env.*
+!.env.example
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+.coverage
+htmlcov/
+coverage/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/

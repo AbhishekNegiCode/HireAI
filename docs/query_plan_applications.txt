@@ -1,0 +1,21 @@
+                                                                   QUERY PLAN                                                                    
+-------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=9.51..9.52 rows=2 width=142) (actual time=0.374..0.375 rows=2 loops=1)
+   Buffers: shared hit=5
+   ->  Sort  (cost=9.51..9.52 rows=2 width=142) (actual time=0.374..0.374 rows=2 loops=1)
+         Sort Key: applied_at DESC
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=5
+         ->  Bitmap Heap Scan on applications  (cost=4.16..9.50 rows=2 width=142) (actual time=0.007..0.007 rows=2 loops=1)
+               Recheck Cond: (candidate_id = 1)
+               Heap Blocks: exact=1
+               Buffers: shared hit=2
+               ->  Bitmap Index Scan on ix_applications_candidate_id  (cost=0.00..4.16 rows=2 width=0) (actual time=0.002..0.002 rows=2 loops=1)
+                     Index Cond: (candidate_id = 1)
+                     Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=166
+ Planning Time: 1.163 ms
+ Execution Time: 0.749 ms
+(17 rows)
+

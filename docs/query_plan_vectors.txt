@@ -1,0 +1,21 @@
+                                                         QUERY PLAN                                                          
+-----------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=19.60..19.62 rows=10 width=12) (actual time=0.031..0.032 rows=10 loops=1)
+   Buffers: shared hit=8
+   InitPlan 1 (returns $0)
+     ->  Limit  (cost=0.00..0.05 rows=1 width=32) (actual time=0.003..0.004 rows=1 loops=1)
+           Buffers: shared hit=1
+           ->  Seq Scan on resume_embeddings  (cost=0.00..12.80 rows=280 width=32) (actual time=0.003..0.003 rows=1 loops=1)
+                 Buffers: shared hit=1
+   ->  Sort  (cost=19.55..20.25 rows=280 width=12) (actual time=0.031..0.031 rows=10 loops=1)
+         Sort Key: ((job_embeddings.embedding <=> $0))
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=8
+         ->  Seq Scan on job_embeddings  (cost=0.00..13.50 rows=280 width=12) (actual time=0.009..0.018 rows=20 loops=1)
+               Buffers: shared hit=5
+ Planning:
+   Buffers: shared hit=151
+ Planning Time: 2.868 ms
+ Execution Time: 0.056 ms
+(17 rows)
+

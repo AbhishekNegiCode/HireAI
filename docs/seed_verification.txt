@@ -1,0 +1,26 @@
+   role    | count 
+-----------+-------
+ recruiter |     5
+ candidate |    11
+(2 rows)
+
+ companies 
+-----------
+         5
+(1 row)
+
+ jobs 
+------
+   20
+(1 row)
+
+ skills 
+--------
+     24
+(1 row)
+
+ applications 
+--------------
+           20
+(1 row)
+

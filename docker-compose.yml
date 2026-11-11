@@ -1,0 +1,51 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: hireai
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in the root .env}
+      POSTGRES_DB: hireai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hireai -d hireai"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://hireai:${POSTGRES_PASSWORD}@db:5432/hireai
+      SECRET_KEY: ${SECRET_KEY:?Set a random SECRET_KEY in the root .env}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-llama-3.3-70b-versatile}
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      STORAGE_DIR: /app/storage/resumes
+      HF_HOME: /app/model-cache
+      EMBEDDING_CACHE_DIR: /app/model-cache/hub
+      EMBEDDINGS_ENABLED: ${EMBEDDINGS_ENABLED:-true}
+    volumes:
+      - resume_data:/app/storage
+      - model_cache:/app/model-cache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+    command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:5173:80"
+    depends_on:
+      - backend
+volumes:
+  postgres_data:
+  resume_data:
+  model_cache:

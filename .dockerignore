@@ -1,0 +1,8 @@
+.venv
+.pgdata
+**/.env
+**/node_modules
+**/__pycache__
+**/storage
+**/dist
+.git

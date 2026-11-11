@@ -1,0 +1,2492 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HireAI API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Register",
+        "operationId": "register_api_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Me",
+        "operationId": "me_api_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_api_auth_logout_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidates/me": {
+      "get": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Profile",
+        "operationId": "profile_api_candidates_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Update Profile",
+        "operationId": "update_profile_api_candidates_me_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidates/me/skills": {
+      "get": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Skills",
+        "operationId": "skills_api_candidates_me_skills_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Update Skills",
+        "operationId": "update_skills_api_candidates_me_skills_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "$ref": "#/components/schemas/SkillInput"
+                },
+                "type": "array",
+                "title": "Data"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidates/dashboard": {
+      "get": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Dashboard",
+        "operationId": "dashboard_api_candidates_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidates/saved-jobs": {
+      "get": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Saved",
+        "operationId": "saved_api_candidates_saved_jobs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/candidates/saved-jobs/{job_id}": {
+      "post": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Save",
+        "operationId": "save_api_candidates_saved_jobs__job_id__post",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Candidates"
+        ],
+        "summary": "Unsave",
+        "operationId": "unsave_api_candidates_saved_jobs__job_id__delete",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Search",
+        "operationId": "search_api_jobs_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "company",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Company"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Location"
+            }
+          },
+          {
+            "name": "work_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Work Mode"
+            }
+          },
+          {
+            "name": "employment_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Employment Type"
+            }
+          },
+          {
+            "name": "skill",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Skill"
+            }
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Experience"
+            }
+          },
+          {
+            "name": "salary",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Salary"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "newest",
+              "title": "Sort"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 12,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Create",
+        "operationId": "create_api_jobs_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{job_id}": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Detail",
+        "operationId": "detail_api_jobs__job_id__get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Update",
+        "operationId": "update_api_jobs__job_id__put",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Remove",
+        "operationId": "remove_api_jobs__job_id__delete",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/jobs/{job_id}/report": {
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Report",
+        "operationId": "report_api_jobs__job_id__report_post",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/applications": {
+      "post": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Apply",
+        "operationId": "apply_api_applications_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/applications/me": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Mine",
+        "operationId": "mine_api_applications_me_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/applications/{application_id}": {
+      "get": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Detail",
+        "operationId": "detail_api_applications__application_id__get",
+        "parameters": [
+          {
+            "name": "application_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Application Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/applications/{application_id}/withdraw": {
+      "patch": {
+        "tags": [
+          "Applications"
+        ],
+        "summary": "Withdraw",
+        "operationId": "withdraw_api_applications__application_id__withdraw_patch",
+        "parameters": [
+          {
+            "name": "application_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Application Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recruiter/company": {
+      "get": {
+        "tags": [
+          "Recruiters"
+        ],
+        "summary": "Company",
+        "operationId": "company_api_recruiter_company_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Recruiters"
+        ],
+        "summary": "Update Company",
+        "operationId": "update_company_api_recruiter_company_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recruiter/jobs": {
+      "get": {
+        "tags": [
+          "Recruiters"
+        ],
+        "summary": "Jobs",
+        "operationId": "jobs_api_recruiter_jobs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recruiter/dashboard": {
+      "get": {
+        "tags": [
+          "Recruiters"
+        ],
+        "summary": "Dashboard",
+        "operationId": "dashboard_api_recruiter_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recruiter/jobs/{job_id}/applicants": {
+      "get": {
+        "tags": [
+          "Recruiters"
+        ],
+        "summary": "Applicants",
+        "operationId": "applicants_api_recruiter_jobs__job_id__applicants_get",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          },
+          {
+            "name": "skill",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Skill"
+            }
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "minimum": 0,
+              "default": 0,
+              "title": "Experience"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recruiter/applications/{application_id}/status": {
+      "patch": {
+        "tags": [
+          "Recruiters"
+        ],
+        "summary": "Status",
+        "operationId": "status_api_recruiter_applications__application_id__status_patch",
+        "parameters": [
+          {
+            "name": "application_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Application Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resumes/upload": {
+      "post": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Upload",
+        "operationId": "upload_api_resumes_upload_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_api_resumes_upload_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resumes/me": {
+      "get": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Mine",
+        "operationId": "mine_api_resumes_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Remove",
+        "operationId": "remove_api_resumes_me_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resumes/me/analysis": {
+      "get": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Analysis",
+        "operationId": "analysis_api_resumes_me_analysis_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Correct",
+        "operationId": "correct_api_resumes_me_analysis_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeOutput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resumes/me/analyze": {
+      "post": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Retry",
+        "operationId": "retry_api_resumes_me_analyze_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resumes/me/analysis/import": {
+      "post": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Import Skills",
+        "operationId": "import_skills_api_resumes_me_analysis_import_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resumes/{resume_id}/download": {
+      "get": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Download",
+        "operationId": "download_api_resumes__resume_id__download_get",
+        "parameters": [
+          {
+            "name": "resume_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Resume Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/recommendations/refresh": {
+      "post": {
+        "tags": [
+          "AI matching"
+        ],
+        "summary": "Recommendations",
+        "operationId": "recommendations_api_ai_recommendations_refresh_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/recommendations": {
+      "get": {
+        "tags": [
+          "AI matching"
+        ],
+        "summary": "Recommendations",
+        "operationId": "recommendations_api_ai_recommendations_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ai/skill-gap/{job_id}": {
+      "post": {
+        "tags": [
+          "AI matching"
+        ],
+        "summary": "Gap",
+        "operationId": "gap_api_ai_skill_gap__job_id__post",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Job Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/dashboard": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Dashboard",
+        "operationId": "dashboard_api_admin_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/users": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Users",
+        "operationId": "users_api_admin_users_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Q"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/users/{user_id}/status": {
+      "patch": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Status",
+        "operationId": "status_api_admin_users__user_id__status_patch",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActiveInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/jobs": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Jobs",
+        "operationId": "jobs_api_admin_jobs_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/companies": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Companies",
+        "operationId": "companies_api_admin_companies_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/companies/{company_id}": {
+      "put": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Company",
+        "operationId": "company_api_admin_companies__company_id__put",
+        "parameters": [
+          {
+            "name": "company_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Company Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/applications": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Applications",
+        "operationId": "applications_api_admin_applications_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/reports": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Reports",
+        "operationId": "reports_api_admin_reports_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/reports/{report_id}": {
+      "patch": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Resolve",
+        "operationId": "resolve_api_admin_reports__report_id__patch",
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActiveInput": {
+        "properties": {
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "is_active"
+        ],
+        "title": "ActiveInput"
+      },
+      "ApplicationInput": {
+        "properties": {
+          "job_id": {
+            "type": "integer",
+            "title": "Job Id"
+          },
+          "cover_letter": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Cover Letter",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "job_id"
+        ],
+        "title": "ApplicationInput"
+      },
+      "Body_upload_api_resumes_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_api_resumes_upload_post"
+      },
+      "CompanyInput": {
+        "properties": {
+          "company_name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 2,
+            "title": "Company Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Description",
+            "default": ""
+          },
+          "website": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Website",
+            "default": ""
+          },
+          "industry": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Industry",
+            "default": ""
+          },
+          "company_size": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Company Size",
+            "default": ""
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 160,
+            "title": "Location",
+            "default": ""
+          },
+          "logo_url": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Logo Url",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "company_name"
+        ],
+        "title": "CompanyInput"
+      },
+      "EducationInput": {
+        "properties": {
+          "institution": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Institution"
+          },
+          "degree": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Degree"
+          },
+          "start_year": {
+            "type": "integer",
+            "maximum": 2200.0,
+            "minimum": 1900.0,
+            "title": "Start Year"
+          },
+          "end_year": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 2200.0,
+                "minimum": 1900.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Year"
+          }
+        },
+        "type": "object",
+        "required": [
+          "institution",
+          "degree",
+          "start_year"
+        ],
+        "title": "EducationInput"
+      },
+      "ExperienceInput": {
+        "properties": {
+          "company": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Company"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 5000,
+            "title": "Description",
+            "default": ""
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "company",
+          "title",
+          "start_date"
+        ],
+        "title": "ExperienceInput"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "JobInput": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 3,
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 30000,
+            "minLength": 30,
+            "title": "Description"
+          },
+          "responsibilities": {
+            "type": "string",
+            "maxLength": 20000,
+            "title": "Responsibilities",
+            "default": ""
+          },
+          "employment_type": {
+            "type": "string",
+            "enum": [
+              "Full-time",
+              "Part-time",
+              "Contract",
+              "Internship"
+            ],
+            "title": "Employment Type",
+            "default": "Full-time"
+          },
+          "experience_min": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Experience Min",
+            "default": 0
+          },
+          "experience_max": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Experience Max",
+            "default": 10
+          },
+          "salary_min": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Salary Min",
+            "default": 0
+          },
+          "salary_max": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Salary Max",
+            "default": 0
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Location"
+          },
+          "work_mode": {
+            "type": "string",
+            "enum": [
+              "Remote",
+              "Hybrid",
+              "On-site"
+            ],
+            "title": "Work Mode",
+            "default": "Remote"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "closed",
+              "draft"
+            ],
+            "title": "Status",
+            "default": "active"
+          },
+          "application_deadline": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Application Deadline"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/JobSkillInput"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Skills"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "description",
+          "location"
+        ],
+        "title": "JobInput"
+      },
+      "JobSkillInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "importance": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Importance",
+            "default": 3
+          },
+          "is_required": {
+            "type": "boolean",
+            "title": "Is Required",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "JobSkillInput"
+      },
+      "Login": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "Login"
+      },
+      "ProfileInput": {
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Full Name"
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 40,
+            "title": "Phone",
+            "default": ""
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 160,
+            "title": "Location",
+            "default": ""
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Headline",
+            "default": ""
+          },
+          "professional_summary": {
+            "type": "string",
+            "maxLength": 10000,
+            "title": "Professional Summary",
+            "default": ""
+          },
+          "total_experience": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Total Experience",
+            "default": 0
+          },
+          "portfolio_url": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Portfolio Url",
+            "default": ""
+          },
+          "linkedin_url": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Linkedin Url",
+            "default": ""
+          },
+          "github_url": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Github Url",
+            "default": ""
+          },
+          "education": {
+            "items": {
+              "$ref": "#/components/schemas/EducationInput"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "title": "Education"
+          },
+          "experience": {
+            "items": {
+              "$ref": "#/components/schemas/ExperienceInput"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Experience"
+          }
+        },
+        "type": "object",
+        "required": [
+          "full_name"
+        ],
+        "title": "ProfileInput"
+      },
+      "Register": {
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Full Name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "Password"
+          },
+          "confirm_password": {
+            "type": "string",
+            "title": "Confirm Password"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "recruiter"
+            ],
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "full_name",
+          "email",
+          "password",
+          "confirm_password",
+          "role"
+        ],
+        "title": "Register"
+      },
+      "ReportInput": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "maxLength": 5000,
+            "minLength": 10,
+            "title": "Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "ReportInput"
+      },
+      "ReportStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "dismissed"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "ReportStatus"
+      },
+      "ResumeOutput": {
+        "properties": {
+          "candidate_name": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Candidate Name",
+            "default": ""
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "title": "Email",
+            "default": ""
+          },
+          "education": {
+            "items": {
+              "$ref": "#/components/schemas/EducationInput"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "title": "Education"
+          },
+          "technical_skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Technical Skills"
+          },
+          "soft_skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Soft Skills"
+          },
+          "projects": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Projects"
+          },
+          "work_experience": {
+            "items": {
+              "$ref": "#/components/schemas/ExperienceInput"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Work Experience"
+          },
+          "total_experience": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Total Experience",
+            "default": 0
+          },
+          "certifications": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Certifications"
+          },
+          "suggested_roles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 15,
+            "title": "Suggested Roles"
+          },
+          "professional_summary": {
+            "type": "string",
+            "maxLength": 5000,
+            "title": "Professional Summary",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ResumeOutput"
+      },
+      "SkillInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "proficiency_level": {
+            "type": "string",
+            "enum": [
+              "Beginner",
+              "Intermediate",
+              "Advanced",
+              "Expert"
+            ],
+            "title": "Proficiency Level",
+            "default": "Intermediate"
+          },
+          "years_of_experience": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Years Of Experience",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "SkillInput"
+      },
+      "StatusInput": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "Under Review",
+              "Shortlisted",
+              "Interview Scheduled",
+              "Selected",
+              "Rejected"
+            ],
+            "title": "Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "StatusInput"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
