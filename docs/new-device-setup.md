@@ -21,7 +21,8 @@ cd HireAI
 ```
 
 The command above uses this project’s HTTPS clone URL.
-For this private repository, sign into an account with repository access using your normal Git credential helper.
+This public repository can be cloned without signing in. Authentication is required
+only when pushing changes with an account that has write access.
 Do not put a password or access token in the clone URL.
 
 ### 2. Create configuration
