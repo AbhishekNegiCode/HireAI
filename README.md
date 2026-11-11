@@ -31,7 +31,7 @@ migrations, seed accounts, AI setup, tests and troubleshooting.
 **Recommended: Docker** (Git and Docker must be installed and Docker running):
 
 ```sh
-git clone <YOUR-REPOSITORY-URL> HireAI
+git clone https://github.com/AbhishekNegiCode/HireAI.git HireAI
 cd HireAI
 cp .env.example .env
 # Set independent random POSTGRES_PASSWORD and SECRET_KEY values in .env.

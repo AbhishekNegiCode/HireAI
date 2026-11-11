@@ -16,12 +16,12 @@ plugin (Linux). Start Docker. On GitHub, copy this repository's HTTPS URL from
 **Code**, then run:
 
 ```sh
-git clone <YOUR-REPOSITORY-URL> HireAI
+git clone https://github.com/AbhishekNegiCode/HireAI.git HireAI
 cd HireAI
 ```
 
-Replace `<YOUR-REPOSITORY-URL>` with the copied URL; do not type the angle brackets.
-For a private repository, sign into GitHub using your normal Git credential helper.
+The command above uses this project’s HTTPS clone URL.
+For this private repository, sign into an account with repository access using your normal Git credential helper.
 Do not put a password or access token in the clone URL.
 
 ### 2. Create configuration
