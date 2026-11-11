@@ -22,7 +22,7 @@ services:
       DATABASE_URL: postgresql+psycopg://hireai:${POSTGRES_PASSWORD}@db:5432/hireai
       SECRET_KEY: ${SECRET_KEY:?Set a random SECRET_KEY in the root .env}
       GROQ_API_KEY: ${GROQ_API_KEY:-}
-      GROQ_MODEL: ${GROQ_MODEL:-llama-3.3-70b-versatile}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-120b}
       ENVIRONMENT: ${ENVIRONMENT:-development}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
       FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}

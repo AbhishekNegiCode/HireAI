@@ -97,7 +97,7 @@ password-protected database and persistent named volumes.
 | DATABASE_URL | `postgresql+psycopg://user:password@host:port/hireai` |
 | SECRET_KEY | Required random signing secret, 32+ characters |
 | GROQ_API_KEY | Optional key for structured LLM resume extraction |
-| GROQ_MODEL | Configurable Groq model; default `llama-3.3-70b-versatile` |
+| GROQ_MODEL | Configurable Groq model; default `openai/gpt-oss-120b` |
 | EMBEDDINGS_ENABLED | `true` for local BGE inference, `false` for explicit skill-only fallback |
 | EMBEDDING_MODEL | `BAAI/bge-small-en-v1.5`; must produce 384 dimensions |
 | EMBEDDING_CACHE_DIR | Persistent local model cache; default `storage/model-cache/hub` |

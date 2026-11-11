@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     token_minutes: int = 60
     storage_dir: str = "storage/resumes"
     groq_api_key: str = ""
-    groq_model: str = "llama-3.3-70b-versatile"
+    groq_model: str = "openai/gpt-oss-120b"
     embeddings_enabled: bool = True
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     embedding_cache_dir: str = "storage/model-cache/hub"

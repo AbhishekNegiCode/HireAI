@@ -543,3 +543,49 @@ def test_every_private_api_route_requires_authentication(client):
             assert response.status_code == 401, (method, path, response.text)
             checked += 1
     assert checked >= 40
+
+
+def test_analysis_survives_embedding_failure(candidate, monkeypatch):
+    from app.services import resume_analyzer
+    monkeypatch.setattr(resume_analyzer, "analyze_text", lambda _: ResumeOutput(technical_skills=["SQL"]))
+    def fail_embedding(_):
+        raise RuntimeError("embedding unavailable")
+    monkeypatch.setattr(resume_analyzer, "embed", fail_embedding)
+    assert upload(candidate).status_code == 201
+    result = candidate.get("/api/resumes/me/analysis").json()
+    assert result["status"] == "ready"
+    assert result["analysis"]["technical_skills"] == ["SQL"]
+    assert result["semantic_available"] is False
+
+
+def test_resume_deleted_during_analysis(candidate, monkeypatch):
+    from app.services import resume_analyzer
+    from sqlalchemy import delete
+    from app.models import ResumeAnalysis
+    rid = upload(candidate).json()["resume_id"]
+    def delete_during_analysis(_):
+        with SessionLocal.begin() as db:
+            db.execute(delete(Resume).where(Resume.resume_id == rid))
+        return ResumeOutput(technical_skills=["SQL"])
+    monkeypatch.setattr(resume_analyzer, "analyze_text", delete_during_analysis)
+    monkeypatch.setattr(resume_analyzer, "embed", lambda _: pytest.fail("Deleted resume must not be embedded"))
+    resume_analyzer.analyze_resume(rid)
+    with SessionLocal() as db:
+        assert db.get(Resume, rid) is None
+        assert db.scalar(select(ResumeAnalysis).where(ResumeAnalysis.resume_id == rid)) is None
+
+
+def test_extraction_uses_strict_json_schema(monkeypatch):
+    from app.services import resume_analyzer
+    from langchain_groq import ChatGroq
+    from types import SimpleNamespace
+    monkeypatch.setattr(resume_analyzer, "settings", lambda: SimpleNamespace(groq_api_key="test-key", groq_model="openai/gpt-oss-120b"))
+    def structured(self, schema, **options):
+        assert options == {"method": "json_schema", "strict": True}
+        for obj in [schema, *schema.get("$defs", {}).values()]:
+            assert obj["additionalProperties"] is False
+            assert set(obj["required"]) == set(obj["properties"])
+        assert self.max_tokens == 8192
+        return SimpleNamespace(invoke=lambda _: {"technical_skills": [" SQL ", "sql"]})
+    monkeypatch.setattr(ChatGroq, "with_structured_output", structured)
+    assert resume_analyzer.analyze_text("Fictional SQL resume").technical_skills == ["SQL"]
